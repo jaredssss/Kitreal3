@@ -4,7 +4,7 @@
   "description": "Capture full-page screenshots with free and premium workflows.",
   "version": "1.0.0",
   "permissions": ["activeTab", "downloads", "scripting", "storage", "tabs"],
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": ["<all_urls>", "https://extensionpay.com/*"],
   "background": {
     "service_worker": "background.js"
   },

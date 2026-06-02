@@ -1,5 +1,9 @@
+importScripts('./ExtPay.js');
+
 const EXTENSIONPAY_ID = 'kit';
-const EXTENSIONPAY_LINK = 'https://extensionpay.com/home/extension/kit/edit';
+const SCROLL_SETTLE_DELAY_MS = 180;
+const extpay = ExtPay(EXTENSIONPAY_ID);
+extpay.startBackground();
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   handleMessage(request, sender)
@@ -20,9 +24,10 @@ async function handleMessage(request, sender) {
     case 'CAPTURE_FULL':
       return captureFullPage(tabId, { asPdf: false });
     case 'CAPTURE_FULL_PDF':
+      await assertPremiumUser();
       return captureFullPage(tabId, { asPdf: true });
     case 'OPEN_PREMIUM_PAGE':
-      await chrome.tabs.create({ url: EXTENSIONPAY_LINK });
+      extpay.openPaymentPage();
       return { message: 'Opened premium checkout page.' };
     default:
       throw new Error('Unsupported action.');
@@ -45,7 +50,7 @@ async function captureFullPage(tabId, { asPdf }) {
   try {
     for (const y of pageMetrics.scrollSteps) {
       await scrollTo(tabId, y);
-      await sleep(180);
+      await sleep(SCROLL_SETTLE_DELAY_MS);
       const image = await chrome.tabs.captureVisibleTab(tab.windowId, { format: 'png' });
       captures.push({ image, y });
     }
@@ -172,4 +177,11 @@ function buildFilename(prefix, extension = 'png') {
 
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+async function assertPremiumUser() {
+  const user = await extpay.getUser();
+  if (!user.paid) {
+    throw new Error('Premium subscription required. Click "Unlock Premium" to subscribe for $5/month.');
+  }
 }

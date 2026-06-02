@@ -19,13 +19,14 @@ A production-ready Manifest V3 Chrome extension focused on full-page screenshot 
 ## Tech stack
 - **Chrome Extension Manifest V3**
 - **Service Worker** (`background.js`) for capture orchestration
+- **ExtPay SDK** (`ExtPay.js`) for subscription checks and checkout
 - **Chrome APIs**: `tabs`, `scripting`, `downloads`, `storage`
 - **Popup UI**: plain HTML/CSS/JS (lightweight, no framework)
 - **Packaging**: Bash + `zip` (`package-extension.sh`)
 
 ## ExtensionPay setup
 - Extension id configured in code as: `kit`
-- Upgrade entry point links to: `https://extensionpay.com/home/extension/kit/edit`
+- Upgrade entry point uses `extpay.openPaymentPage()` with id `kit`
 - Price target: **$5 USD monthly** (configured in ExtensionPay dashboard)
 
 ## Local install
