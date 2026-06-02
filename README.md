@@ -33,13 +33,13 @@ A production-ready Manifest V3 Chrome extension focused on full-page screenshot 
 1. Open `chrome://extensions`
 2. Enable **Developer mode**
 3. Click **Load unpacked**
-4. Select this repo directory: `/tmp/workspace/jaredssss/Kitreal3`
+4. Select your cloned repo directory (for example: `Kitreal3`)
 
 ## Create a publishable zip
 ```bash
-cd /tmp/workspace/jaredssss/Kitreal3
+cd <path-to-repo>
 ./package-extension.sh
 ```
 
 Output:
-- `/tmp/workspace/jaredssss/Kitreal3/release/kitreal-capture-extension.zip`
+- `./release/kitreal-capture-extension.zip`

@@ -171,8 +171,8 @@ function blobToDataUrl(blob) {
 }
 
 function buildFilename(prefix, extension = 'png') {
-  const now = new Date().toISOString().replace(/[:.]/g, '-');
-  return `kitreal/${prefix}-${now}.${extension}`;
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  return `kitreal/${prefix}-${timestamp}.${extension}`;
 }
 
 function sleep(milliseconds) {
