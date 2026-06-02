@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kitreal Capture</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Kitreal Capture</h1>
+        <p>Commercial-grade screenshots with a generous free tier.</p>
+      </header>
+
+      <section>
+        <h2>Free Features</h2>
+        <ul>
+          <li>Visible area capture (PNG)</li>
+          <li>Full-page stitched capture (PNG)</li>
+          <li>Save-as dialog and timestamped filenames</li>
+        </ul>
+        <button id="capture-visible">Capture Visible Area</button>
+        <button id="capture-full">Capture Full Page</button>
+      </section>
+
+      <section class="premium">
+        <h2>Premium ($5/month)</h2>
+        <ul>
+          <li>Premium full-page workflow with PDF-ready export tab</li>
+          <li>Priority quality mode for large pages</li>
+          <li>Future automation roadmap: scheduled and batch captures</li>
+        </ul>
+        <button id="capture-full-pdf">Premium Capture</button>
+        <button id="open-premium">Unlock Premium</button>
+      </section>
+
+      <p id="status" role="status"></p>
+      <small>ExtensionPay extension id: <strong>kit</strong></small>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
